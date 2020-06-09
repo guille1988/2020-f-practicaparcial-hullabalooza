@@ -151,18 +151,15 @@ y además la popularidad total (la popularidad acumulada de sus bandas) supera l
 -}
 
 buenFest :: Festival -> [Banda] -> Bool
-buenFest festival listaDeBandas = (sum (cadaBandaesMejorAnterior listaDeBandas) > 1000) && (lista_ordenada (cadaBandaesMejorAnterior listaDeBandas)) 
+buenFest festival bandas = (sum (popularidadesDe bandas) > 1000) && (estaOrdenada (popularidadesDe bandas)) 
  
-cadaBandaesMejorAnterior :: [Banda] -> [Int]
-cadaBandaesMejorAnterior listaDeBandas = map popularidad listaDeBandas
+popularidadesDe :: [Banda] -> [Int]
+popularidadesDe bandas = map popularidad bandas
 
-compararPopularidadAcumulada :: [Int] -> Bool
-compararPopularidadAcumulada listaDePopularidades = lista_ordenada listaDePopularidades
-
-lista_ordenada :: Ord a => [a] -> Bool
-lista_ordenada [] = True
-lista_ordenada [_] = True
-lista_ordenada (x:y:xs) = (x<=y) && lista_ordenada (y:xs)
+estaOrdenada :: Ord a => [a] -> Bool
+estaOrdenada [] = True
+estaOrdenada [_] = True
+estaOrdenada (x:y:xs) = (x<=y) && estaOrdenada (y:xs)
 
 --PUNTO 8--
 
