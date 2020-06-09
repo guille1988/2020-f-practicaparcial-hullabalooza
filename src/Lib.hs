@@ -3,7 +3,7 @@ import Text.Show.Functions
 
 laVerdad = True
 
---PUNTO 1--
+--PUNTO 1,2 y 3--
 
 {-
 De cada festival se sabe el lugar donde se realiza, la cantidad y estado de ánimo inicial del público y 
@@ -62,6 +62,9 @@ heavyMetal festival = modificarEstadoDeAnimo (modificarPublico festival (*1.01))
 trashMetal :: Metal
 trashMetal festival =  modificarEstadoDeAnimo (modificarPublico festival (*1.01)) ((estadoDeAnimo festival) ++ "basura")
 
+fusion :: Genero
+fusion = pop.heavyMetal
+
 {-
 Las bandas
 Las bandas tienen un conjunto de descripciones realizadas por los críticos y los decibeles a los que suelen tocar. 
@@ -84,11 +87,22 @@ soda = Banda rockNacional ["Irrepetible"] 40
 miranda = Banda pop ["Insipida","Incolora","Inodora"] 60
 metallica = Banda heavyMetal ["Legendaria","Vendida"] 60
 manson = Banda trashMetal ["Poronga"] 180
+theStrokes = Banda fusion ["suicidio asistido","emocional","linda"] 45
 
 tocar :: Banda -> Festival -> Festival
 tocar = genero 
 
 --Poner en consola : tocar losRedondos hullabalooza
+
+--PUNTO 4--
+
+--Definir la función suceder, que hace que suceda un festival.
+-- El resultado debe ser el mismo festival pero con el público en su situación final, luego de haber tocado todas las bandas. 
+
+suceder :: Festival -> [Banda] -> Festival
+suceder festival listaDeBandas = foldr ($) festival (map genero listaDeBandas)
+
+--PUNTO 5--
 
 
 
