@@ -139,18 +139,44 @@ condicionDecibeles decibeles numero = decibeles > numero
 
 --PUNTO 6--
 
-popularidad :: [String] -> Int
-popularidad = (*100).length 
+popularidad :: Banda -> Int
+popularidad  = (*100).length.clasificacion
 
 --PUNTO 7--
 
+{-
+Definir la función buenFest, que dado un festival y un conjunto de clasificaciones posibles dice si es un buen fest. 
+Esto sucede cuando cronológicamente cada banda es más popular que la anterior, 
+y además la popularidad total (la popularidad acumulada de sus bandas) supera los 1000 puntos.
+-}
+
+buenFest :: Festival -> [Banda] -> Bool
+buenFest festival listaDeBandas
+ | (sum (map popularidad listaDeBandas) > 1000) && (lista_ordenada (cadaBandaesMejorAnterior listaDeBandas))  = True
+ | otherwise = False
+ 
+
+cadaBandaesMejorAnterior :: [Banda] -> [Int]
+cadaBandaesMejorAnterior listaDeBandas = map popularidad listaDeBandas
 
 
+compararPopularidadAcumulada :: [Int] -> Bool
+compararPopularidadAcumulada listaDePopularidades = lista_ordenada listaDePopularidades
 
+lista_ordenada :: Ord a => [a] -> Bool
+lista_ordenada [] = True
+lista_ordenada [_] = True
+lista_ordenada (x:y:xs) = (x<=y) && lista_ordenada (y:xs)
 
+--PUNTO 8--
 
+--Los trate de utilizar en todo el parcial basicamente, reutilizando cada funcion previamente hecha.
 
+--PUNTO 9--
 
+--Me da mucha paja contestarlo.
+
+--THE END--
 
 
 
