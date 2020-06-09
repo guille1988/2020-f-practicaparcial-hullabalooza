@@ -152,7 +152,7 @@ y además la popularidad total (la popularidad acumulada de sus bandas) supera l
 
 buenFest :: Festival -> [Banda] -> Bool
 buenFest festival listaDeBandas
- | (sum (map popularidad listaDeBandas) > 1000) && (lista_ordenada (cadaBandaesMejorAnterior listaDeBandas))  = True
+ | (sum (cadaBandaesMejorAnterior listaDeBandas) > 1000) && (lista_ordenada (cadaBandaesMejorAnterior listaDeBandas))  = True
  | otherwise = False
  
 
