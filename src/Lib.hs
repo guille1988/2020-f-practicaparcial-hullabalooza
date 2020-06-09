@@ -80,6 +80,19 @@ decibeles :: Float
 }deriving (Show)
 
 losRedondos = Banda rockNacional ["Legendaria","Pogosa"] 45
+soda = Banda rockNacional ["Irrepetible"] 40
+miranda = Banda pop ["Insipida","Incolora","Inodora"] 60
+metallica = Banda heavyMetal ["Legendaria","Vendida"] 60
+manson = Banda trashMetal ["Poronga"] 180
+
+tocar :: Banda -> Festival -> Festival
+tocar = genero 
+
+--Poner en consola : tocar losRedondos hullabalooza
+
+
+
+
 
 
 
