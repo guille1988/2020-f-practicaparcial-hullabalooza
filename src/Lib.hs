@@ -104,6 +104,45 @@ suceder festival listaDeBandas = foldr ($) festival (map genero listaDeBandas)
 
 --PUNTO 5--
 
+{-
+Se conocen ciertos criterios de clasificación de bandas, de los cuales depende su popularidad. Por ejemplo:
+Vendida: Debe tener tres o más descripciones o bien una descripción que sea “vendida”. 
+Acústica: Es la que toca a más de 55 decibeles. 
+Legendaria. Debe estar descripta como “legendaria” y tocar a más de 40 decibeles.
+Definir las funciones que permitan clasificar a las bandas. 
+Una banda puede clasificarse de más de una manera a la vez o ninguna.
+-}
+
+clasificacion :: Banda -> [String]
+clasificacion banda = map (\x -> x banda) [esVendida,esAcustica,esLegendaria]
+
+esVendida :: Banda -> String
+esVendida banda 
+ |(length (descripcion banda) >= 3) && (buscarEnLista (descripcion banda) (=="Vendida")) = "Vendida"
+ | otherwise = ""
+
+esAcustica :: Banda -> String
+esAcustica banda 
+ | condicionDecibeles (decibeles banda)  55 = "Acustica"
+ | otherwise = ""
+
+esLegendaria :: Banda -> String
+esLegendaria banda 
+ | (buscarEnLista (descripcion banda) (=="Legendaria")) && condicionDecibeles (decibeles banda) 40 = "Legendaria"
+ | otherwise = ""
+
+buscarEnLista :: [String] -> (String -> Bool) -> Bool
+buscarEnLista lista condicion = any condicion lista
+
+condicionDecibeles :: Float -> Float -> Bool
+condicionDecibeles decibeles numero = decibeles > numero
+
+--PUNTO 6--
+
+
+
+
+
 
 
 
