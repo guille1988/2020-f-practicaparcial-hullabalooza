@@ -139,6 +139,13 @@ condicionDecibeles decibeles numero = decibeles > numero
 
 --PUNTO 6--
 
+popularidad :: [String] -> Int
+popularidad = (*100).length 
+
+--PUNTO 7--
+
+
+
 
 
 
